@@ -84,7 +84,7 @@ var ViewModel = function() {
      * @description Retrieve all of the articles from wikipedia.
      */
     self.getWikipediaArticles = function() {
-        self.articleList.destoryAll();
+        self.articleList.destroyAll();
         /**
          * @description create object for wiki API issues.
          * @type {number}
