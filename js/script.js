@@ -69,6 +69,7 @@ var ViewModel = function() {
      *  Get "`articles`" from the NY Times articlesearch API
      */
     self.getNewYorkTimesArticles = function() {
+        self.articles.destroyAll();
         $.getJSON(self.nytimesUrl(), function(data){
 
             self.nyTimesHeader('New York Times Articles About ' + self.city());
@@ -83,6 +84,7 @@ var ViewModel = function() {
      * @description Retrieve all of the articles from wikipedia.
      */
     self.getWikipediaArticles = function() {
+        self.articleList.destoryAll();
         /**
          * @description create object for wiki API issues.
          * @type {number}
