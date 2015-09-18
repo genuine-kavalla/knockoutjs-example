@@ -1,86 +1,3 @@
-/**
- * Wiki tool.
- */
-
-
-/**
- *
- * @returns {boolean}
- */
-function loadData() {
-
-    var $body = $('body');
-    var $wikiElem = $('#wikipedia-links');
-    var $nytHeaderElem = $('#nytimes-header');
-    var $nytElem = $('#nytimes-articles');
-    var $greeting = $('#greeting');
-
-    // clear out old data before new request
-    $wikiElem.text("");
-    $nytElem.text("");
-
-    var streetStr = $('#street').val();
-    var cityStr = $('#city').val();
-    var address = streetStr + ', ' + cityStr;
-
-    // $greeting.text('So, you want to live at ' + address + '?');
-
-
-    //// load nytimes
-    //var nytimesUrl = 'http://api.nytimes.com/svc/search/v2/articlesearch.json?q=' + cityStr + '&sort=newest&api-key=3abc9a3d23e60b38c21b4ab9b0a91c07:17:69911633'
-    //$.getJSON(nytimesUrl, function(data){
-    //
-    //    $nytHeaderElem.text('New York Times Articles About ' + cityStr);
-    //
-    //    articles = data.response.docs;
-    //    for (var i = 0; i < articles.length; i++) {
-    //        var article = articles[i];
-    //        $nytElem.append('<li class="article">'+
-    //            '<a href="'+article.web_url+'">'+article.headline.main+'</a>'+
-    //            '<p>' + article.snippet + '</p>'+
-    //        '</li>');
-    //    };
-    //
-    //}).error(function(e){
-    //    $nytHeaderElem.text('New York Times Articles Could Not Be Loaded');
-    //});
-
-
-
-    //// load wikipedia data
-    //var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + cityStr + '&format=json&callback=wikiCallback';
-    //var wikiRequestTimeout = setTimeout(function(){
-    //    $wikiElem.text("failed to get wikipedia resources");
-    //}, 8000);
-    //
-    //$.ajax({
-    //    url: wikiUrl,
-    //    dataType: "jsonp",
-    //    jsonp: "callback",
-    //    success: function( response ) {
-    //        console.log(response);
-    //        var articleList = response[1];
-    //
-    //        for (var i = 0; i < articleList.length; i++) {
-    //            articleStr = articleList[i];
-    //            var url = 'http://en.wikipedia.org/wiki/' + articleStr;
-    //            $wikiElem.append('<li><a href="' + url + '">' + articleStr + '</a></li>');
-    //        };
-    //
-    //        clearTimeout(wikiRequestTimeout);
-    //    }
-    //});
-
-    return false;
-}
-
-$('#form-container').submit(loadData);
-
-// loadData();
-
-var Times = function() {
-
-};
 
 /**
  * @description Object to hold the wikipedia URL and String
@@ -89,8 +6,8 @@ var Times = function() {
  */
 var Wiki = function(article) {
     // A "`ko.observable`" object to hold the wiki URL
-    self.wikiUrl = ko.observable('http://en.wikipedia.org/wiki/' + article);
-    self.wikiString = ko.observable(article);
+    this.wikiUrl = ko.observable('http://en.wikipedia.org/wiki/' + article);
+    this.wikiString = ko.observable(article);
 };
 
 /**
@@ -154,7 +71,6 @@ var ViewModel = function() {
     self.getNewYorkTimesArticles = function() {
         $.getJSON(self.nytimesUrl(), function(data){
 
-            console.log(data);
             self.nyTimesHeader('New York Times Articles About ' + self.city());
 
             self.articles(data.response.docs);
@@ -181,7 +97,6 @@ var ViewModel = function() {
             dataType: "jsonp",
             jsonp: "callback",
             success: function( response ) {
-                console.log(response);
                 var articleLists = response[1];
 
                 for (var i = 0; i < articleLists.length; i++) {
@@ -206,7 +121,6 @@ var ViewModel = function() {
         self.setStreetViewUrl();
         self.getNewYorkTimesArticles();
         self.getWikipediaArticles();
-        return true;
     };
 
 };
