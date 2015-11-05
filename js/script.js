@@ -39,7 +39,7 @@ var ViewModel = function() {
      * Define "`ko.computed`" variables.
      */
     self.nytimesUrl = ko.pureComputed(function() {
-        return 'http://api.nytimes.com/svc/search/v2/articlesearch.json?q=' + self.city() + '&sort=newest&api-key=3abc9a3d23e60b38c21b4ab9b0a91c07:17:69911633';
+        return 'http://api.nytimes.com/svc/search/v2/articlesearch.json?q=' + self.city() + '&sort=newest&api-key=d26b838d3089fcdb4173dd0b820fbd97:6:72994391';
     }, this);
 
     self.wikipediaApiUrl = ko.pureComputed(function() {
